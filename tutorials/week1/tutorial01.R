@@ -106,9 +106,9 @@ dev.off()
 # Research questions: 
 # What is the relationship between social demographic characteristics (education, employment, age, gender) & informal politics (official political parties vs traditional leaders)?
 
-# download data from AfroBarometer (Zimbabwe R10): https://www.afrobarometer.org/survey-resource/zimbabwe-round-10-data-2024/
-# here is the codebook: https://www.afrobarometer.org/survey-resource/zimbabwe-round-10-codebook-2024/
-AB_ZIM <- read.csv()
+# download data from AfroBarometer (Malawi R10): https://www.afrobarometer.org/survey-resource/malawi-round-10-data-2024/
+# here is the codebook: https://www.afrobarometer.org/survey-resource/malawi-round-10-codebook-2024/
+AB_MALAWI <- read.csv()
 View(df)
 
 # reduce your data to these variables: 
