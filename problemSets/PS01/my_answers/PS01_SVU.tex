@@ -1,0 +1,232 @@
+\documentclass[12pt,letterpaper]{article}
+\usepackage{graphicx,textcomp}
+\usepackage{natbib}
+\usepackage{setspace}
+\usepackage{fullpage}
+\usepackage{color}
+\usepackage[reqno]{amsmath}
+\usepackage{amsthm}
+\usepackage{fancyvrb}
+\usepackage{amssymb,enumerate}
+\usepackage[all]{xy}
+\usepackage{endnotes}
+\usepackage{lscape}
+\newtheorem{com}{Comment}
+\usepackage{float}
+\usepackage{hyperref}
+\newtheorem{lem} {Lemma}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{defn}{Definition}
+\newtheorem{cor}{Corollary}
+\newtheorem{obs}{Observation}
+\usepackage[compact]{titlesec}
+\usepackage{dcolumn}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usepackage{multirow}
+\usepackage{xcolor}
+\newcolumntype{.}{D{.}{.}{-1}}
+\newcolumntype{d}[1]{D{.}{.}{#1}}
+\definecolor{light-gray}{gray}{0.65}
+\usepackage{url}
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+	backgroundcolor=\color{backcolour},   
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\footnotesize,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	numbers=left,                    
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=2
+}
+\lstset{style=mystyle}
+\newcommand{\Sref}[1]{Section~\ref{#1}}
+\newtheorem{hyp}{Hypothesis}
+
+\title{Problem Set 1}
+\date{Due: January 28, 2026}
+\author{Applied Stats/Quant Methods 1\\
+	Shelly Veal-Upham\\
+	25337422}
+
+\begin{document}
+	\maketitle
+	
+	\section*{Instructions}
+	\begin{itemize}
+	\item Please show your work! You may lose points by simply writing in the answer. If the problem requires you to execute commands in \texttt{R}, please include the code you used to get your answers. Please also include the \texttt{.R} file that contains your code. If you are not sure if work needs to be shown for a particular problem, please ask.
+\item Your homework should be submitted electronically on GitHub.
+\item This problem set is due before 23:59 on Wednesday January 28, 2026. No late assignments will be accepted.
+	\end{itemize}
+	
+	\vspace{1cm}
+	\section*{Roll Call Votes in the European Parliament}
+
+\subsection*{Data Manipulation}
+First, you need to \href{https://personal.lse.ac.uk/hix/HixNouryRolandEPdata.HTM}{download data} from the first six elected European Parliaments on each MEP and how they voted in each recorded roll-call vote.
+
+\vspace{.25cm}
+
+\begin{enumerate}
+\item Load these datasets into your global environment:
+\begin{itemize}
+	\item \texttt{mep\_info\_26Jul11.xls} (MEP characteristics, EP1–EP5)
+	\item \texttt{rcv\_ep1.txt} (EP1 roll-call votes)
+\end{itemize}
+
+\item Briefly describe (2–3 sentences each) the unit of analysis and key variables in each of these two datasets.
+\indent The EP 1 dataset gives us information on the voting decisions made by each MEP in the first European Parliament (0 = Absent, 1 = Yes, 2 = No, 3 = Abstain, 4 = Present but did not vote, 5 = Absent). It also includes MEP ID numbers, National Party codes, Member State codes, and EP Group codes. The MEP info dataset gives us some duplicate information as the EP 1 dataset (MEP IDs, National Party, EP Group, and Member State affiliations) along with the Nominate coordinates (-1, 1).
+
+\item The \texttt{rcv\_ep1} data are in a wide format, with V1, V2, …, Vn as separate vote columns.
+\begin{itemize}
+	\item Identify which columns are ID/metadata (\textit{MEPID, MEPNAME, MS, NP, EPG}) and which columns are vote decisions ($V_1$…$V_n$). Tidy the voting data such that each row/observation is a single vote for a single MEP.
+
+\lstinputlisting[language=R, firstline=12, lastline=22]{PS01_SVU.R} 
+
+	\item Create a summary table of counts of decision categories (e.g. Yes/No/Abstain/Present but did not vote/Absent) across all votes.
+
+\lstinputlisting[language=R, firstline=24, lastline=33]{PS01_SVU.R} 
+\begin{table}[ht]
+	\centering
+	\begin{tabular}{rlr}
+		\hline
+		& Vote\_Type & Count \\ 
+		\hline
+		1 & Absent & 99753 \\ 
+		2 & Yes & 88185 \\ 
+		3 & No & 75171 \\ 
+		4 & Abstain & 9577 \\ 
+		5 & Present but did not vote & 109224 \\ 
+		\hline
+	\end{tabular}
+	\caption{Total Vote Counts for EP 1} 
+\end{table}
+
+\end{itemize}
+\item  Construct a new dataset that combines MEP-level information with their vote decisions from EP1 in long format (from part 3). Check for missingness.
+
+\lstinputlisting[language=R, firstline=35, lastline=46]{PS01_SVU.R} 
+
+When we first merge the datasets, we find that the Coordinate columns contain lots of NA values due to that information being missing from the EP 1 dataset. To check for legitimate missingness in the data, I removed those columns and had a look at which rows are missing information elsewhere. I found that rows 45, 444, 493 and 543 had NA's due to information not contained in the EP 1 dataset that weren't in the MEP Info dataset, and row 470 was the sole row with information coming from EP 1 that wasn't in the MEP info dataset. Row 45 refers to Gustavo Selva, whose information I copied from the EP dataset columns to the MEP info dataset columns here:
+
+\lstinputlisting[language=R, firstline=56, lastline=56]{PS01_SVU.R} 
+
+Then, after making a dataset with NA's set to 99, for each of the duplicate columns (MEPID, MS, EPG, and Names) I checked for any other discrepancies before deleting the extra columns. 
+
+\lstinputlisting[language=R, firstline=58, lastline=65]{PS01_SVU.R} 
+
+\item Compute, for each EP group in EP1:
+\begin{itemize}
+	\item The mean rate of Yes votes (Yes over Yes+No+Abstain) across all roll calls.
+	\item The mean abstention rate.
+	\item The mean vote preferences along the two contested dimensions (NOM-D1 and NOM-D2).
+
+\begin{table}[ht]
+	\centering
+	\begin{tabular}{rrrrrrrrr}
+		\hline
+		& 0 & 1 & 2 & 3 & 4 & 5 & YESPROP & ABSPROP \\ 
+		\hline
+		C & 9547 & 14421 & 17707 & 2612 & 11531 &   0 & 0.42 & 0.08 \\ 
+		E & 22917 & 25909 & 23914 & 1093 & 28218 & 16673 & 0.51 & 0.02 \\ 
+		G & 5624 & 3436 & 2806 & 468 & 7328 & 21094 & 0.51 & 0.07 \\ 
+		L & 11046 & 6129 & 5679 & 797 & 10903 & 7088 & 0.49 & 0.06 \\ 
+		M & 14739 & 6726 & 4990 & 1019 & 14005 & 5479 & 0.53 & 0.08 \\ 
+		N & 2976 & 1997 & 1247 & 193 & 3857 & 11880 & 0.58 & 0.06 \\ 
+		R & 3946 & 926 & 562 & 537 & 3779 & 1768 & 0.46 & 0.27 \\ 
+		S & 28955 & 28641 & 18266 & 2858 & 29603 & 38753 & 0.58 & 0.06 \\ 
+		\hline
+	\end{tabular}
+\end{table}
+
+\lstinputlisting[language=R, firstline=67, lastline=110]{PS01_SVU.R} 
+
+\end{itemize}
+\end{enumerate}
+
+\subsection*{Data Visualization}
+
+\begin{enumerate}
+	\item Plot the distribution of the first NOMINATE dimension by EP group, and explain any trends you see.
+
+\begin{figure}[h!]\centering
+	\caption{\footnotesize Nominate Dimension 1.}
+	\label{fig:plot_1}
+	\includegraphics[width=.85\textwidth]{1.1.pdf}
+\end{figure}
+
+
+\begin{figure}[h!]\centering
+	\caption{\footnotesize Nominate Dimension 1 (2).}
+	\label{fig:plot_2}
+	\includegraphics[width=.85\textwidth]{1.2.pdf}
+\end{figure}
+\vspace{1cm}
+
+We can see that EP groups are generally in the same areas as one another with regard to dimension 1, which makes sense. Groups M, N, and R seem to have the most spread.
+
+\newpage
+	\item Make a scatterplot of \textit{nomdim1} (x-axis) and \textit{nomdim2} (y-axis), with one point per MEP and color by EP group.
+
+
+\begin{figure}[h!]\centering
+	\caption{\footnotesize Nominate Dimensions 1 and 2.}
+	\label{fig:plot_3}
+	\includegraphics[width=.85\textwidth]{2.1.pdf}
+\end{figure}
+
+\newpage
+\vspace{10cm}
+	\item Produce a boxplot of the proportion voting \textit{Yes} by EP group to visualize cohesion.
+
+\begin{figure}[h!]\centering
+	\caption{\footnotesize Proportion of Yeses (Only out of Yes/No/Abstains).}
+	\label{fig:plot_4}
+	\includegraphics[width=.85\textwidth]{3.1.pdf}
+\end{figure}
+\newpage
+\vspace{10cm}
+This plot seemed a little odd / underinformative to me, so I included all vote types in the following plot as well:
+\vspace{3cm}
+
+\begin{figure}[h!]\centering
+	\caption{\footnotesize Proportion of Yeses (including Absent, Didn't vote).}
+	\label{fig:plot_5}
+	\includegraphics[width=.85\textwidth]{3.2.pdf}
+\end{figure}
+
+\newpage
+
+\newpage
+	\item Display the proportion voting \textit{Yes} by national party using a bar plot.
+
+
+\begin{figure}[h!]\centering
+	\caption{\footnotesize Proportion of Yeses by National Party.}
+	\label{fig:plot_6}
+	\includegraphics[width=.85\textwidth]{4.1.pdf}
+\end{figure}
+
+	
+	
+\end{enumerate}
+
+
+\end{document}
