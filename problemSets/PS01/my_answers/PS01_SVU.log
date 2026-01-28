@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.10.8)  28 JAN 2026 16:03
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.10.8)  28 JAN 2026 16:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -753,14 +753,14 @@ Package rerunfilecheck Info: File `PS01_SVU.out' has not changed.
  ) 
 Here is how much of TeX's memory you used:
  27587 strings out of 467797
- 483134 string characters out of 5425036
- 1499152 words of memory out of 5000000
+ 483137 string characters out of 5425036
+ 1498152 words of memory out of 5000000
  55528 multiletter control sequences out of 15000+600000
  637918 words of font info for 86 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,9n,91p,3240b,2284s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </Users/michelleupham/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></Users/michelleupham/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></Users/michelleupham/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></Users/michelleupham/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></Users/michelleupham/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></Users/michelleupham/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></Users/michelleupham/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></Users/michelleupham/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></Users/michelleupham/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></Users/michelleupham/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></Users/michelleupham/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></Users/michelleupham/Library/TinyTeX/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></Users/michelleupham/Library/TinyTeX/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on PS01_SVU.pdf (12 pages, 260590 bytes).
+Output written on PS01_SVU.pdf (12 pages, 261308 bytes).
 PDF statistics:
  425 PDF objects out of 1000 (max. 8388607)
  369 compressed objects within 4 object streams

@@ -150,7 +150,7 @@ dev.off()
 # Boxplot of Yes vote proportions in EP Groups each vote
 
 yes_means_yna <- df_long %>%
-  group_by(`EP Group`, `VOTE_ID`) %>%
+  group_by(`MEPID`, `EP Group`) %>%
   summarize(mean_yes = sum(VOTE_CAST == 1, na.rm = TRUE)/
                        sum(VOTE_CAST %in% c(1,2,3), na.rm = TRUE))
 
@@ -168,7 +168,7 @@ ggplot(data = na.omit(yes_means_yna), aes(x = `EP Group`, y = mean_yes*100,
 dev.off()
 
 yes_means <- df_long %>%
-  group_by(`EP Group`, `VOTE_ID`) %>%
+  group_by(`MEPID`, `EP Group`) %>%
   summarize(mean_yes = sum(VOTE_CAST == 1, na.rm = TRUE)/
               sum(VOTE_CAST %in% c(0,1,2,3,4), na.rm = TRUE))
 
