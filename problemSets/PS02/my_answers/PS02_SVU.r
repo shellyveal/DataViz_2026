@@ -197,7 +197,6 @@ ggsave("ridges_together.pdf", ridges_together,
 box_plot <- ggplot(data, aes(x = GDREGION, y = NUMOFFMBR, fill = TRAD6, color = TRAD6)) +
   geom_boxplot() +
   scale_fill_viridis_d(alpha = 0.7) +
-  scale_color_viridis_d() +
   theme(axis.title.x = element_blank(),
         plot.title = element_text(hjust = 0.5)) +
   labs(
@@ -205,14 +204,15 @@ box_plot <- ggplot(data, aes(x = GDREGION, y = NUMOFFMBR, fill = TRAD6, color = 
     y = "Number of Official Members",
     fill = "Congregation"
   ) +
+  scale_color_manual(name = "Congregation",
+                     labels = c("Chretiennes", "Juives", "Musulmanes"),
+                     values = c("#440154", "#21918c", "#fde725")) +
   ylim(0, 10000) +
   annotate("text", label = "Note: certain outliers not captured", x = 6.5, y = 10000) +
   theme(axis.text.x = element_text(angle = 25, hjust = 1))
 
 ggsave("box_plot.pdf", box_plot,
        width = 10, height = 5, units = "in")
-
-
 
 
 
@@ -275,11 +275,11 @@ box_plot_wrapped <- ggplot(data, aes(x = GDREGION, y = NUMOFFMBR, fill = TRAD6, 
   ) +
   theme(axis.text.x = element_text(angle = 25, hjust = 1))
 
+# -------------------------------------------------------------------------
+
+
 ggsave("box_plot_wrapped.pdf", box_plot_wrapped,
        width = 10, height = 5, units = "in")
-
-
-
 
 #Question 2.2
 bp_2.2 <- ggplot(data %>% filter(YEAR == 2022),
@@ -303,3 +303,44 @@ bp_2.2 <- ggplot(data %>% filter(YEAR == 2022),
 
 ggsave("bar_plot_2.2.pdf", bp_2.2,
        width = 10, height = 5, units = "in")
+
+
+# Question 4 facet wrapped by region:
+
+box_plot_region <- ggplot(data, aes(x = TRAD6, y = NUMOFFMBR, fill = TRAD6, color = TRAD6)) +
+  geom_boxplot() +
+  scale_fill_viridis_d(alpha = 0.7) +
+  theme(axis.title.x = element_blank(),
+        axis.text.x = element_blank(),
+        plot.title = element_text(hjust = 0.5)) +
+  facet_wrap(~GDREGION, scales = "free_y", strip.position = "bottom") +
+  scale_color_manual(name = "Religion",
+                     labels = c("Chretiennes", "Juives", "Musulmanes"),
+                     values = c("#440154", "#21918c", "#fde725")) +
+  labs(
+    title = "Congregational Member Counts (2022)",
+    y = "Number of Official Members",
+    fill = "Religion"
+  )
+
+ggsave("box_plot_by_reg.pdf", box_plot_region,
+       width = 10, height = 5, units = "in")
+
+# Question 1 "bar plot" version:
+
+prop_bar <- ggplot(data %>% filter(!is.na(AVG_INCOME)), 
+      aes(
+        x = factor(AVG_INCOME),
+        fill = TRAD12)) +
+  geom_bar(position = "fill") +
+  facet_wrap(~ YEAR, strip.position = "bottom") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  labs(x = "Year",
+       y = "Proportion",
+       title = "Proportions Above and Below Average Income",
+       fill = "Congregation") +
+  scale_fill_viridis_d()
+
+ggsave("prop_bar_stacked.pdf", prop_bar,
+       width = 10, height = 5, units = "in")
+

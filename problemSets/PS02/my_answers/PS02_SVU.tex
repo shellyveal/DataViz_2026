@@ -136,7 +136,22 @@ The data for this problem set come from the	National Congregations Study Switzer
 		\centering
 		\includegraphics[width=.95\textwidth]{bar_plot_1.2.pdf}
 	\end{figure}
+
 	\newpage
+
+	Professor Ziegler, in the updated version of the problem set, requested a proportional bar plot that distinguishes those above and below average income. See Figure~\ref{fig3} for my version.
+
+
+	\lstinputlisting[language=R, firstline=331,lastline=342]{PS02_SVU.R}
+	
+	\begin{figure}[h!]
+		\caption{Proportion of Congregations Above and Below Average Income}\label{fig3}
+		\centering
+		\includegraphics[width=.95\textwidth]{prop_bar_stacked.pdf}
+	\end{figure}
+		
+	\newpage
+	
 	
 	\item Make a histogram detailing the number of official members using the 12-level religious classification (\texttt{TRAD12}) distinguishing between the 6-level religious classification (\texttt{TRAD6}) by year. Hint: Use \texttt{facet()} for year, \texttt{TRAD6} on the x-axis, and group/fill using \texttt{TRAD12} with the \texttt{position="dodge"}.
 	
@@ -144,18 +159,18 @@ The data for this problem set come from the	National Congregations Study Switzer
 	\newpage
 	
 	\begin{figure}[h!]
-		\caption{Number of Members by Congregation}\label{fig3}
+		\caption{Number of Members by Congregation}\label{fig4}
 		\centering
 		\includegraphics[width=.8\textwidth]{bar_plot_2.1.pdf}
 	\end{figure}
 	
-	For Figure~\ref{fig3} I have used \texttt{geom\_col()} to compile the total numbers of official members in each congregation and grouped the x-axis by the variable \texttt{TRAD6}. Figure~\ref{fig4} shows much the same information, but wrapped by overarching religious affiliation (\texttt{TRAD12}) with differing y-axis scales.
+	For Figure~\ref{fig4} I have used \texttt{geom\_col()} to compile the total numbers of official members in each congregation and grouped the x-axis by the variable \texttt{TRAD6}. Figure~\ref{fig5} shows much the same information, but wrapped by overarching religious affiliation (\texttt{TRAD12}) with differing y-axis scales.
 	
 	\lstinputlisting[language=R, firstline=285,lastline=302]{PS02_SVU.R}
 	\vspace{5cm}
 	
 	\begin{figure}[h!]
-		\caption{Number of Congregation Members by Religion}\label{fig4}
+		\caption{Number of Congregation Members by Religion}\label{fig5}
 		\centering
 		\includegraphics[width=.95\textwidth]{bar_plot_2.2.pdf}
 	\end{figure}
@@ -165,28 +180,28 @@ The data for this problem set come from the	National Congregations Study Switzer
 	\lstinputlisting[language=R, firstline=174,lastline=189]{PS02_SVU.R}
 	
 	\begin{figure}[h!]
-		\caption{Congregations Above and Below Average Yearly Income}\label{fig5}
+		\caption{Congregations Above and Below Average Yearly Income}\label{fig6}
 		\centering
 		\includegraphics[width=.9\textwidth]{ridges_together.pdf}
 	\end{figure}
 	
 	\newpage
 	
-	Because the scale of income is so different for those congregations with above and below average yearly incomes, I decided also to separate the two groups into individual plots for a closer look. See Figures~\ref{fig6} and~\ref{fig7}.
+	Because the scale of income is so different for those congregations with above and below average yearly incomes, I decided also to separate the two groups into individual plots for a closer look. See Figures~\ref{fig7} and~\ref{fig8}.
 	
 	\lstinputlisting[language=R, firstline=223,lastline=236]{PS02_SVU.R}
 	
 	\lstinputlisting[language=R, firstline=241,lastline=254]{PS02_SVU.R}
 	
 	\begin{figure}[h!]
-		\caption{Congregations Above Average Yearly Income}\label{fig6}
+		\caption{Congregations Above Average Yearly Income}\label{fig7}
 		\centering
 		\includegraphics[width=.95\textwidth]{ridges_above.pdf}
 	\end{figure}
 	
 	
 	\begin{figure}[h!]
-		\caption{Congregations Below Average Yearly Income}\label{fig7}
+		\caption{Congregations Below Average Yearly Income}\label{fig8}
 		\centering
 		\includegraphics[width=.95\textwidth]{ridges_below.pdf}
 	\end{figure}
@@ -199,23 +214,34 @@ The data for this problem set come from the	National Congregations Study Switzer
 	\lstinputlisting[language=R, firstline=197,lastline=210]{PS02_SVU.R}
 	
 	\begin{figure}[h!]
-		\caption{Official Members by Region}\label{fig8}
+		\caption{Official Members by Region}\label{fig9}
 		\centering
 		\includegraphics[width=.8\textwidth]{box_plot.pdf}
 	\end{figure}
 
 	
 
-	Again, given the drastic difference in scales among religious affiliation membership, I decided to wrap the plot according to affiliation. See Figure~\ref{fig9}.
+	Again, given the drastic difference in scales among religious affiliation membership, I decided to wrap the plot according to affiliation. See Figure~\ref{fig10}.
 	
 	\lstinputlisting[language=R, firstline=262,lastline=276]{PS02_SVU.R}
 	
 	\begin{figure}[h!]
-		\caption{Regional Membership by Religious Affiliation}\label{fig9}
+		\caption{Regional Membership by Religious Affiliation}\label{fig10}
 		\centering
 		\includegraphics[width=.95\textwidth]{box_plot_wrapped.pdf}
 	\end{figure}
 	
+	
+	Finally, Professor Ziegler suggested in the updated form of the problem set that we wrap by region. Figure~\ref{fig11} shows what I did for that.
+
+	\lstinputlisting[language=R, firstline=310,lastline=324]{PS02_SVU.R}
+
+	\begin{figure}[h!]
+		\caption{Regional Membership by Religious Affiliation}\label{fig11}
+		\centering
+		\includegraphics[width=.95\textwidth]{box_plot_by_reg.pdf}
+	\end{figure}
+
 
 \end{enumerate}
 

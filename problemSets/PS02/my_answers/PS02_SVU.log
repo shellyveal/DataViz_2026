@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.10.8)  1 FEB 2026 07:00
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.10.8)  3 FEB 2026 17:25
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -712,26 +712,38 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
 [4 <./bar_plot_1.1.pdf>] (./PS02_SVU.R)
-
-[5 <./bar_plot_1.2.pdf>]
-<bar_plot_2.1.pdf, id=171, 578.16pt x 361.35pt>
-File: bar_plot_2.1.pdf Graphic file (type pdf)
-<use bar_plot_2.1.pdf>
-Package pdftex.def Info: bar_plot_2.1.pdf  used on input line 149.
-(pdftex.def)             Requested size: 375.80544pt x 234.87471pt.
- (./PS02_SVU.R)
-<bar_plot_2.2.pdf, id=174, 722.7pt x 361.35pt>
-File: bar_plot_2.2.pdf Graphic file (type pdf)
-<use bar_plot_2.2.pdf>
-Package pdftex.def Info: bar_plot_2.2.pdf  used on input line 160.
+<prop_bar_stacked.pdf, id=151, 722.7pt x 361.35pt>
+File: prop_bar_stacked.pdf Graphic file (type pdf)
+<use prop_bar_stacked.pdf>
+Package pdftex.def Info: prop_bar_stacked.pdf  used on input line 150.
 (pdftex.def)             Requested size: 446.26582pt x 223.13594pt.
 
 
-[6 <./bar_plot_2.1.pdf>] (./PS02_SVU.R)
-<ridges_together.pdf, id=205, 722.7pt x 361.35pt>
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+
+[5 <./bar_plot_1.2.pdf>] (./PS02_SVU.R)
+
+[6 <./prop_bar_stacked.pdf>]
+<bar_plot_2.1.pdf, id=196, 578.16pt x 361.35pt>
+File: bar_plot_2.1.pdf Graphic file (type pdf)
+<use bar_plot_2.1.pdf>
+Package pdftex.def Info: bar_plot_2.1.pdf  used on input line 164.
+(pdftex.def)             Requested size: 375.80544pt x 234.87471pt.
+ (./PS02_SVU.R)
+<bar_plot_2.2.pdf, id=199, 722.7pt x 361.35pt>
+File: bar_plot_2.2.pdf Graphic file (type pdf)
+<use bar_plot_2.2.pdf>
+Package pdftex.def Info: bar_plot_2.2.pdf  used on input line 175.
+(pdftex.def)             Requested size: 446.26582pt x 223.13594pt.
+
+
+[7 <./bar_plot_2.1.pdf>] (./PS02_SVU.R)
+<ridges_together.pdf, id=231, 722.7pt x 361.35pt>
 File: ridges_together.pdf Graphic file (type pdf)
 <use ridges_together.pdf>
-Package pdftex.def Info: ridges_together.pdf  used on input line 170.
+Package pdftex.def Info: ridges_together.pdf  used on input line 185.
 (pdftex.def)             Requested size: 422.77664pt x 211.38614pt.
 
 
@@ -739,38 +751,50 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
 
-[7 <./bar_plot_2.2.pdf>] (./PS02_SVU.R) (./PS02_SVU.R
+[8 <./bar_plot_2.2.pdf>] (./PS02_SVU.R) (./PS02_SVU.R
 
-[8 <./ridges_together.pdf>])
-<ridges_above.pdf, id=280, 722.7pt x 361.35pt>
+[9 <./ridges_together.pdf>])
+<ridges_above.pdf, id=305, 722.7pt x 361.35pt>
 File: ridges_above.pdf Graphic file (type pdf)
 <use ridges_above.pdf>
-Package pdftex.def Info: ridges_above.pdf  used on input line 184.
+Package pdftex.def Info: ridges_above.pdf  used on input line 199.
 (pdftex.def)             Requested size: 446.26582pt x 223.13594pt.
-<ridges_below.pdf, id=281, 722.7pt x 361.35pt>
+<ridges_below.pdf, id=306, 722.7pt x 361.35pt>
 File: ridges_below.pdf Graphic file (type pdf)
 <use ridges_below.pdf>
-Package pdftex.def Info: ridges_below.pdf  used on input line 191.
+Package pdftex.def Info: ridges_below.pdf  used on input line 206.
 (pdftex.def)             Requested size: 446.26582pt x 223.13594pt.
 
 
-[9 <./ridges_above.pdf> <./ridges_below.pdf>] (./PS02_SVU.R)
-<box_plot.pdf, id=304, 722.7pt x 361.35pt>
+[10 <./ridges_above.pdf> <./ridges_below.pdf>] (./PS02_SVU.R)
+<box_plot.pdf, id=329, 722.7pt x 361.35pt>
 File: box_plot.pdf Graphic file (type pdf)
 <use box_plot.pdf>
-Package pdftex.def Info: box_plot.pdf  used on input line 204.
+Package pdftex.def Info: box_plot.pdf  used on input line 219.
 (pdftex.def)             Requested size: 375.80544pt x 187.90308pt.
  (./PS02_SVU.R
 
-[10 <./box_plot.pdf>])
-<box_plot_wrapped.pdf, id=347, 722.7pt x 361.35pt>
+[11 <./box_plot.pdf>])
+<box_plot_wrapped.pdf, id=374, 722.7pt x 361.35pt>
 File: box_plot_wrapped.pdf Graphic file (type pdf)
 <use box_plot_wrapped.pdf>
-Package pdftex.def Info: box_plot_wrapped.pdf  used on input line 216.
+Package pdftex.def Info: box_plot_wrapped.pdf  used on input line 231.
+(pdftex.def)             Requested size: 446.26582pt x 223.13594pt.
+ (./PS02_SVU.R)
+<box_plot_by_reg.pdf, id=376, 722.7pt x 361.35pt>
+File: box_plot_by_reg.pdf Graphic file (type pdf)
+<use box_plot_by_reg.pdf>
+Package pdftex.def Info: box_plot_by_reg.pdf  used on input line 242.
 (pdftex.def)             Requested size: 446.26582pt x 223.13594pt.
 
 
-[11 <./box_plot_wrapped.pdf>] (./PS02_SVU.aux)
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+
+[12 <./box_plot_wrapped.pdf>]
+
+[13 <./box_plot_by_reg.pdf>] (./PS02_SVU.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-09-02>
@@ -779,18 +803,18 @@ Package rerunfilecheck Info: File `PS02_SVU.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 27637 strings out of 467797
- 484611 string characters out of 5425036
- 1366965 words of memory out of 5000000
- 55548 multiletter control sequences out of 15000+600000
+ 27690 strings out of 467797
+ 485560 string characters out of 5425036
+ 1367119 words of memory out of 5000000
+ 55564 multiletter control sequences out of 15000+600000
  637571 words of font info for 85 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,6n,91p,3240b,2214s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </Users/michelleupham/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></Users/michelleupham/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></Users/michelleupham/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></Users/michelleupham/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></Users/michelleupham/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></Users/michelleupham/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></Users/michelleupham/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></Users/michelleupham/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></Users/michelleupham/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></Users/michelleupham/Library/TinyTeX/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></Users/michelleupham/Library/TinyTeX/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on PS02_SVU.pdf (11 pages, 298922 bytes).
+Output written on PS02_SVU.pdf (13 pages, 315518 bytes).
 PDF statistics:
- 465 PDF objects out of 1000 (max. 8388607)
- 407 compressed objects within 5 object streams
- 234 named destinations out of 1000 (max. 500000)
- 58 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 529 PDF objects out of 1000 (max. 8388607)
+ 465 compressed objects within 5 object streams
+ 267 named destinations out of 1000 (max. 500000)
+ 68 words of extra memory for PDF output out of 10000 (max. 10000000)
 
