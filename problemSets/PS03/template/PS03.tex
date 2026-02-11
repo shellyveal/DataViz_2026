@@ -77,12 +77,12 @@
 	\vspace{.25cm}
 	\section*{Canadian Election Study}
 	
-The data for this problem set come from the	Canadian Election Study (CES)  in 2015. The main purpose of the study is to give a comprehensive picture of the Canadian election: why people vote as they do, what changes during campaigns and across elections, and how Canadian voting compares with that in other democracies.
+The data for this problem set come from the	Canadian Election Study (\href{https://ces-eec.sites.olt.ubc.ca/files/2017/04/CES2015_Combined_Data_Codebook.pdf}{CES})  in 2015. The main purpose of the study is to give a comprehensive picture of the Canadian election: why people vote as they do, what changes during campaigns and across elections, and how Canadian voting compares with that in other democracies.
 
 \subsection*{Data Manipulation}
 
 \begin{enumerate}
-\item Load the CES .csv file from \href{https://raw.githubusercontent.com/ASDS-TCD/DataViz_2026/refs/heads/main/datasets/NCSS_v1.csv}{GitHub} into your global environment. Filter respondents to only include "high quality" participants: 
+\item Load the CES .csv file from \href{https://raw.githubusercontent.com/ASDS-TCD/DataViz_2026/refs/heads/main/datasets/CES2015.csv}{GitHub} into your global environment. Filter respondents to only include "high quality" participants: 
 \begin{verbatim}
 ces2015 <- ces2015 |> filter(discard == 0)
 \end{verbatim}
