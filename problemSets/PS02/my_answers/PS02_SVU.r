@@ -56,7 +56,7 @@ data <- data %>%
 ### 2
 
 data <- data %>%
-  filter(TRAD6 == c("Chretiennes",
+  filter(TRAD6 == c("Chrétiennes",
                     "Juives",
                     "Musulmanes"))
 
@@ -343,4 +343,7 @@ prop_bar <- ggplot(data %>% filter(!is.na(AVG_INCOME)),
 
 ggsave("prop_bar_stacked.pdf", prop_bar,
        width = 10, height = 5, units = "in")
+
+# -------------------------------------------------------------------------
+
 
