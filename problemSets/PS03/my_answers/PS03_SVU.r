@@ -317,251 +317,69 @@ plot_3.4 <- ont_que_na + SVU + theme(axis.text.x = element_text(
   angle = 25, hjust = 1, vjust = 1))
 
 
+density_peaks <- q2_data %>%
+  group_by(vote_for) %>%
+  summarize({
+    dens <- density(p_selfplace, from = 0, to = 10, na.rm = TRUE)
+    tibble(
+      x = dens$x[which.max(dens$y)],
+      peak_height = max(dens$y))}) %>%
+  mutate(y_group = c(2.35, 3.5, 4.5, 5.5, 6.6))
 
 
+view(density_peaks)
 
 
-
-
-
-
-prop_12 <- data %>%
-  group_by(TRAD12, YEAR) %>%
-  summarize(N = n()) %>%
-  group_by(YEAR) %>%
-  mutate(PROPORTION = N/sum(N))
-
-sum(prop_12$PROPORTION[prop_12$YEAR == 2009]) # Checking 2009
-sum(prop_12$PROPORTION[prop_12$YEAR == 2022]) # Checking 2022
-
-bp_1.1 <- ggplot(prop_12, aes(
-    x = TRAD12, 
-    y = PROPORTION,
-    fill = TRAD12)) +
-  ylim(0, .4) +
-  geom_col() +
-  facet_wrap(prop_12$YEAR, strip.position = "bottom") +
-  scale_fill_viridis_d() +
-  theme(axis.text.x = element_blank(),
-        axis.title.x = element_blank(),
+plot_2.3 <- ggplot(q2_data %>% group_by(vote_for), aes(x = p_selfplace, 
+                                                       y = vote_for,
+                                                       fill = vote_for,
+                                                       color = vote_for)) +
+  geom_density_ridges(alpha = 0.6) + 
+  theme(legend.position = "none",
         plot.title = element_text(hjust = 0.5)) +
-  labs(
-    title = "Proportion of Congregations for 2009, 2022",
-    y = "Proportion",
-    fill = "Congregation"
-  )
-ggsave("bar_plot_1.1.pdf", bp_1.1,
-       width = 8, height = 5, units = "in")
-
-bp_1.2 <- ggplot(prop_12, aes(
-  x = TRAD12, 
-  y = PROPORTION,
-  fill = factor(YEAR))) +
-  ylim(0, .4) +
-  geom_col(position = "dodge2") +
-  scale_fill_viridis_d() +
-  theme(plot.title = element_text(hjust = 0.5),
-        axis.title.x = element_blank(),
-        axis.text.x = element_text(angle = 25, hjust = 0.85)) +
-  labs(
-    title = "Proportion of Congregations for 2009, 2022",
-    y = "Proportion\n\n",
-    fill = "Year"
-  )
-
-ggsave("bar_plot_1.2.pdf", bp_1.2,
-       width = 12, height = 5, units = "in")
-
-### Question 2: 
-
-bp_2.1 <- ggplot(data, aes(x = TRAD6, y = NUMOFFMBR, fill = TRAD12)) +
-  geom_col(position = "dodge") +
-  scale_fill_viridis_d() +
-  theme(axis.title.x = element_blank(),
-        plot.title = element_text(hjust = 0.5)) +
-  labs(
-    title = "Congregational Member Counts (2022)",
-    y = "Number of Official Members",
-    fill = "Congregation"
-  )
-ggsave("bar_plot_2.1.pdf", bp_2.1,
-       width = 8, height = 5, units = "in")
-
-### Question 3:
-
-ridges_together <- ggplot(data %>% filter(!is.na(AVG_INCOME), YEAR == 2022), 
-       aes(
-         x = INCOME,
-         y = GDREGION,
-         fill = GDREGION,
-         color = GDREGION)) +
-  geom_density_ridges(alpha = 0.7) +
-  facet_wrap(~ AVG_INCOME, labeller = as_labeller(data$AVG_INCOME)) +
-  theme(legend.title = element_blank(),
-        plot.title = element_text(hjust = 0.5)) +
-  labs(x = "Income",
-       y = "Region",
-       title = "Yearly Incomes by Region (2022)") +
-  xlim(0, 6000000) +
-  scale_fill_viridis_d() +
-  scale_color_viridis_d()
-
-ggsave("ridges_together.pdf", ridges_together,
-       width = 10, height = 5, units = "in")
-
-
-### Question 4:
-
-box_plot <- ggplot(data, aes(x = GDREGION, y = NUMOFFMBR, fill = TRAD6, color = TRAD6)) +
-  geom_boxplot() +
-  scale_fill_viridis_d(alpha = 0.7) +
-  theme(axis.title.x = element_blank(),
-        plot.title = element_text(hjust = 0.5)) +
-  labs(
-    title = "Congregational Member Counts (2022)",
-    y = "Number of Official Members",
-    fill = "Congregation"
+  geom_label_repel(
+    data = density_peaks,
+    aes(
+      x = x,
+      y = y_group + (peak_height * 1.2) + 0.1,
+      label = paste0(vote_for, ": ", round(x, 2))),
+    color = "black",
+    fill = "white",
+    size = 3,
+    show.legend = FALSE,
+    segment.color = NA
   ) +
-  scale_color_manual(name = "Congregation",
-                     labels = c("Chretiennes", "Juives", "Musulmanes"),
-                     values = c("#440154", "#21918c", "#fde725")) +
-  ylim(0, 10000) +
-  annotate("text", label = "Note: certain outliers not captured", x = 6.5, y = 10000) +
-  theme(axis.text.x = element_text(angle = 25, hjust = 1))
+  labs(x = "Left (0) - Right (10) Ideological Self-Placement",
+ subtitle = "Visualizing Self-Reported Ideological Placement among Canadian Voters",
+ y = "Party Affiliation",
+ title = "Ideological Self-Placement by Party",
+caption = "Source: Canadian Election Survey 2015 \nParty Affiliation Grouped by Respondents' Naming the Party they Intend to Vote for") +
+  scale_x_continuous(
+    breaks = seq(0, 10, by = 1),
+    limits = c(0, 10))
+  
 
-ggsave("box_plot.pdf", box_plot,
-       width = 10, height = 5, units = "in")
+plot_2.4 <- plot_2.3 + SVU + theme(legend.position = "none")
 
+plot_2.4
 
+ggsave("plot_2.4.pdf", plot_2.4,
+          width = 12, height = 5, units = "in")
 
-
-
-
-### Question 3.2
-ridges_above <- data %>% filter(!is.na(AVG_INCOME), YEAR == 2022, 
-                                AVG_INCOME == 'Above Average')
-ridges_above_plot <- ggplot(ridges_above, aes(
-                            x = INCOME,
-                            y = GDREGION,
-                            fill = GDREGION,
-                            color = GDREGION)) +
-  geom_density_ridges(alpha = 0.7) +
-  theme(plot.title = element_text(hjust = 0.5)) +
-  labs(x = "Income",
-       y = "Region",
-       title = "Yearly Incomes by Region (2022, Above Average)") +
-  scale_fill_viridis_d() +
-  scale_color_viridis_d()
-
-ggsave("ridges_above.pdf", ridges_above_plot,
-       width = 10, height = 5, units = "in")
-
-ridges_below <- data %>% filter(!is.na(AVG_INCOME), YEAR == 2022, 
-                                AVG_INCOME == 'Below Average')
-ridges_below_plot <- ggplot(ridges_below, aes(
-  x = INCOME,
-  y = GDREGION,
-  fill = GDREGION,
-  color = GDREGION)) +
-  geom_density_ridges(alpha = 0.7) +
-  theme(plot.title = element_text(hjust = 0.5)) +
-  labs(x = "Income",
-       y = "Region",
-       title = "Yearly Incomes by Region (2022, Below Average)") +
-  scale_fill_viridis_d() +
-  scale_color_viridis_d()
-
-ggsave("ridges_below.pdf", ridges_below_plot,
-       width = 10, height = 5, units = "in")
-
-
-### Question 4.2:
-
-box_plot_wrapped <- ggplot(data, aes(x = GDREGION, y = NUMOFFMBR, fill = TRAD6, color = TRAD6)) +
-  geom_boxplot() +
-  scale_fill_viridis_d(alpha = 0.7) +
-  theme(axis.title.x = element_blank(),
-        plot.title = element_text(hjust = 0.5)) +
-  facet_wrap(~TRAD6, scales = "free_y") +
-  scale_color_manual(name = "Religion",
-                     labels = c("Chretiennes", "Juives", "Musulmanes"),
-                     values = c("#440154", "#21918c", "#fde725")) +
-  labs(
-    title = "Congregational Member Counts (2022)",
-    y = "Number of Official Members",
-    fill = "Religion"
-  ) +
-  theme(axis.text.x = element_text(angle = 25, hjust = 1))
-
-# -------------------------------------------------------------------------
-
-
-ggsave("box_plot_wrapped.pdf", box_plot_wrapped,
-       width = 10, height = 5, units = "in")
-
-#Question 2.2
-bp_2.2 <- ggplot(data %>% filter(YEAR == 2022),
-                  aes(x = TRAD12, y = NUMOFFMBR, fill = TRAD12)) +
-  geom_col(position = "dodge") +
-  facet_wrap(~ TRAD6, scales = "free_y") +
-  scale_fill_viridis_d() +
-  theme_minimal() +
-  theme(
-    axis.text.x = element_text(angle = 45, hjust = 1),
-    plot.title = element_text(hjust = 0.5),
-    panel.spacing = unit(1.5, "lines"),
-    panel.border = element_rect(color = "grey20", fill = NA, linewidth = 0.8)
-  ) +
-  labs(
-    title = "Number of Official Members by Religion (2022)\n",
-    x = "",
-    y = "Number of Official Members\n\n\n",
-    fill = "Congregation"
-  )
-
-ggsave("bar_plot_2.2.pdf", bp_2.2,
-       width = 10, height = 5, units = "in")
-
-
-# Question 4 facet wrapped by region:
-
-box_plot_region <- ggplot(data, aes(x = TRAD6, y = NUMOFFMBR, fill = TRAD6, color = TRAD6)) +
-  geom_boxplot() +
-  scale_fill_viridis_d(alpha = 0.7) +
-  theme(axis.title.x = element_blank(),
-        axis.text.x = element_blank(),
-        plot.title = element_text(hjust = 0.5)) +
-  facet_wrap(~GDREGION, scales = "free_y", strip.position = "bottom") +
-  scale_color_manual(name = "Religion",
-                     labels = c("Chretiennes", "Juives", "Musulmanes"),
-                     values = c("#440154", "#21918c", "#fde725")) +
-  labs(
-    title = "Congregational Member Counts (2022)",
-    y = "Number of Official Members",
-    fill = "Religion"
-  )
-
-ggsave("box_plot_by_reg.pdf", box_plot_region,
-       width = 10, height = 5, units = "in")
-
-# Question 1 "bar plot" version:
-
-prop_bar <- ggplot(data %>% filter(!is.na(AVG_INCOME)), 
-      aes(
-        x = factor(AVG_INCOME),
-        fill = TRAD12)) +
-  geom_bar(position = "fill") +
-  facet_wrap(~ YEAR, strip.position = "bottom") +
-  theme(plot.title = element_text(hjust = 0.5)) +
-  labs(x = "Year",
-       y = "Proportion",
-       title = "Proportions Above and Below Average Income",
-       fill = "Congregation") +
-  scale_fill_viridis_d()
-
-ggsave("prop_bar_stacked.pdf", prop_bar,
-       width = 10, height = 5, units = "in")
-
-# -------------------------------------------------------------------------
-
-
+geom_label_repel(
+  data = density_peaks,
+  aes(
+    x = x,
+    y = as.numeric(factor(vote_for)) + 0.2,  # slightly above each ridge
+    label = paste0(round(x, 2))
+  ),
+  nudge_y = 0.2,
+  direction = "y",
+  segment.curvature = 0.2,
+  segment.ncp = 3,
+  segment.angle = 20,
+  fill = "white",
+  color = "black",
+  size = 3,
+  show.legend = FALSE
+) 
