@@ -350,7 +350,7 @@ plot_2.3 <- ggplot(q2_data %>% group_by(vote_for), aes(x = p_selfplace,
     segment.color = NA
   ) +
   labs(x = "Left (0) - Right (10) Ideological Self-Placement",
- subtitle = "Visualizing Self-Reported Ideological Placement among Canadian Voters",
+ subtitle = "Peak response level points labeled for each party",
  y = "Party Affiliation",
  title = "Ideological Self-Placement by Party",
 caption = "Source: Canadian Election Survey 2015 \nParty Affiliation Grouped by Respondents' Naming the Party they Intend to Vote for") +
