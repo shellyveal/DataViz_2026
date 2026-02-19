@@ -339,9 +339,7 @@ plot_2.3 <- ggplot(q2_data %>% group_by(vote_for), aes(x = p_selfplace,
         plot.title = element_text(hjust = 0.5)) +
   geom_label_repel(
     data = density_peaks,
-    aes(
-      x = x,
-      y = y_group + (peak_height * 1.2) + 0.1,
+    aes(x = x, y = y_group + (peak_height * 1.2) + 0.1,
       label = paste0(vote_for, ": ", round(x, 2))),
     color = "black",
     fill = "white",
@@ -364,9 +362,9 @@ plot_2.4 <- plot_2.3 + SVU + theme(legend.position = "none")
 plot_2.4
 
 ggsave("plot_2.4.pdf", plot_2.4,
-          width = 12, height = 5, units = "in")
+          width = 12, height = 7, units = "in")
 
-geom_label_repel(
+ageom_label_repel(
   data = density_peaks,
   aes(
     x = x,
