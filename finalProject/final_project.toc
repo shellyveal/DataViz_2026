@@ -1,0 +1,7 @@
+\contentsline {section}{Executive Summary}{1}{Doc-Start}%
+\contentsline {section}{Data Background}{2}{lstnumber.-2.24}%
+\contentsline {section}{Data Cleaning}{3}{lstnumber.-2.24}%
+\contentsline {section}{Individual Figures}{3}{lstnumber.-4.4}%
+\contentsline {subsection}{Fig 1: Geography of Crossings}{3}{section*.1}%
+\contentsline {subsection}{Fig 2: State Differences}{5}{figure.1}%
+\contentsline {subsection}{Fig 3: Trends Over Time}{8}{figure.3}%
